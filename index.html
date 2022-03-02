@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
+
+    <!-- Style css -->
+    <link rel="stylesheet" href="./assets/style/style.css">
+    <title>Hangman</title>
+</head>
+<body >
+
+    <section class="hangman-section">
+        <!-- Heading -->
+        <h1 class="main-header">
+            Hangman Game <i class="fa-solid fa-music-slash"></i>
+        </h1>
+        
+
+        <div class="sounds">
+            <i class="fa-solid fa-volume-high"></i>
+        </div>
+
+        <div class="main-container">
+            <form action="/" class="form">
+                <p class="form-text">
+                    Enter username:
+                </p>
+                <input type="text" name="username" id="username" placeholder="Username" required>
+                <div class="form-link">
+                    Start Game
+                </div>
+            </form>
+        </div>
+    
+        <div class="container">
+            <!-- Mistakes -->
+            <p id="hangman-mistakes">
+                <span id="username-text"></span>, you have <span id="hangman-mistakes__text">0</span> of 6 mistakes
+            </p>
+            
+            <!-- Question -->
+
+            <p id="hangman-question"></p>
+
+            <!-- Main part -->
+            <div class="scary-man">
+                <img src="./assets/images/scary_man.png" alt="" class="scary-man__img">
+                <img src="./assets/images/blood-effect.png" alt="" class="blood-effect">
+            </div>
+            
+            <!-- Answers section -->
+            <div class="hangman-answer"></div>
+        </div>
+        
+
+        <!-- Music -->
+        <audio controls autoplay loop class="hangman-music">
+            <source src="./assets/musics/main-bg__sound.mpeg" type="audio/mpeg">
+        </audio>
+    
+    </section>
+
+
+    <script src="./assets/javascript/app.js"></script>
+</body>
+</html>

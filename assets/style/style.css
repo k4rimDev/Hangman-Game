@@ -1,0 +1,177 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.main-header{
+    position: absolute;
+    top: 100px;
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 100px;
+    text-align: center;
+    color: rgb(241, 66, 66);
+    text-shadow:   0px -6px 0 #212121,  
+    0px -6px 0 #212121,
+    0px  6px 0 #212121,
+    0px  6px 0 #212121,
+    -6px  0px 0 #212121,  
+    6px  0px 0 #212121,
+    -6px  0px 0 #212121,
+    6px  0px 0 #212121,
+    -6px -6px 0 #212121,  
+    6px -6px 0 #212121,
+    -6px  6px 0 #212121,
+    6px  6px 0 #212121,
+    -6px  18px 0 #212121,
+    0px  18px 0 #212121,
+    6px  18px 0 #212121,
+    0 19px 1px rgba(0,0,0,.1),
+    0 0 6px rgba(0,0,0,.1),
+    0 6px 3px rgba(0,0,0,.3),
+    0 12px 6px rgba(0,0,0,.2),
+    0 18px 18px rgba(0,0,0,.25),
+    0 24px 24px rgba(0,0,0,.2),
+    0 36px 36px rgba(0,0,0,.15);
+}
+
+.main-container{
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    padding: 40px;
+    border: 2px solid seashell;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+}
+
+.form-text, #username, .form-link{
+    font-family: sans-serif;
+    font-size: 30px;
+    line-height: 120%;
+    color: antiquewhite;
+    margin-bottom: 30px;
+}
+
+.form-text{
+    font-size: 50px;
+    font-style: italic;
+}
+
+#username{
+    border: 0;
+    outline: 0;
+    padding: 14px;
+    background: transparent;
+    border-bottom: 2px solid #1A1A1A;
+    font-style: italic;
+    text-align: center;
+}
+
+#username::placeholder{
+    color: #e4d0d0;
+}
+
+.form-link{
+    text-decoration: none;
+    color: #e4d0d0;
+    border: 2px solid #1A1A1A;
+    border-radius: 15px;
+    padding: 14px 24px;
+    cursor: pointer;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+}
+
+.form-link:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+.form-link:active{
+    border: 1px solid rgba(212, 120, 44, 0.918);
+}
+
+
+.hangman-section{
+    background-image: url(../images/scary-bg.jpg);
+    min-height: 100%;
+    padding: 163.4px;
+    background-size: 100%;
+    width: 100%;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.container{
+    display: none;
+    margin-top: 100px;
+}
+
+.hangman-music{
+    position: absolute;
+    z-index: -999;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.sounds{
+    position: fixed;
+    cursor: pointer;
+    top: 120px;
+    right: 100px;
+    font-size: 50px;
+    color: #fff;
+    text-shadow: -16px 6px 15px #ced0d3;
+}
+
+.scary-man{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.scary-man__img{
+    width: 70%;
+    height: 70%;
+}
+.blood-effect{
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .4s ease;
+}
+
+
+#hangman-question, .hangman-answer, #hangman-mistakes{
+    font-weight: bold;
+    font-family: sans-serif;
+    color: azure;
+    text-align: center;
+}
+#hangman-mistakes{
+    margin-bottom: 20px;
+}
