@@ -5,7 +5,6 @@ let objQuestion;
 let mistakes = 1;
 let key;
 let check = "";
-let youWin = false;
 let arrQuestions = [
     {
         "Ölkə": "usa"
@@ -41,37 +40,31 @@ let arrQuestions = [
         "Meyvə növü": "alma"
     },
     {
-        "Ey heyvanı": "pişik"
+        "Ev heyvanı": "pişik"
     },
 ];
 
 
+//Create question
 function getObject(){
     objQuestion = arrQuestions[Math.floor(Math.random() * arrQuestions.length)];   
 }
 
-getObject();
 
-let question = Object.keys(objQuestion);
-document.getElementById("hangman-question").innerHTML = question;
-let answer = Object.values(objQuestion);
+// Game 
+function game(){
+    getObject();
+    let question = Object.keys(objQuestion);
+    document.getElementById("hangman-question").innerHTML = question;
+    let answer = Object.values(objQuestion);
 
-for (let i = 0; i < answer[0].length; i ++){
-    document.querySelector(".hangman-answer").innerHTML += `<span id="answer-text${[i]}"> _</span>`
-}
+    for (let i = 0; i < answer[0].length; i ++){
+        document.querySelector(".hangman-answer").innerHTML += `<span id="answer-text${[i]}"> _</span>`
+    }
 
-// Key EventListener
-document.querySelector(".form-link").addEventListener("click", ()=>{
 
-    // Username
-    username = document.querySelector("#username").value;
-    document.querySelector("#username-text").innerHTML = username;
-
-    // Change Theme
-    document.querySelector(".main-container").style.display = "none";
-    document.querySelector(".container").style.display = "block";
-
-    document.addEventListener('keydown', (event) => {
+    // Function of game
+    function keyListener(event){
         key = event.key;
     
         if (answer[0].includes(key)){
@@ -81,12 +74,13 @@ document.querySelector(".form-link").addEventListener("click", ()=>{
                     check += key;
                     console.log(check)
                 }
-                if(check.length == answer[0].length && answer[0].includes(check)){
-                    alert("You Win!");
-                }
             }
-
-            
+            if(check.length == answer[0].length){
+                setTimeout(() => {
+                    alert("You win");
+                    document.removeEventListener('keydown', keyListener);
+                }, 1200)
+            }            
         }
     
         // Mistakes
@@ -98,26 +92,48 @@ document.querySelector(".form-link").addEventListener("click", ()=>{
             if (mistakes == 7){
                 document.querySelector(".blood-effect").style.opacity = "1";
                 document.querySelector(".blood-effect").style.visibility = "visible";
+                setTimeout(() => {
+                    alert("You lose, answer is " + answer[0]);
+                }, 1200)
+                
+                document.removeEventListener('keydown', keyListener);
             }
         }
+    }
 
-        // for (let index = 0; index < answer[0].length; index++) {
-        //     if (document.querySelector(`#answer-text${index}`).innerHTML == " _") {
-        //         alert("You Lose, answer is " + answer[0]);
-        //         break;
-        //     }
-        //     else{
-        //         alert("You Win!");
-        //         break;
-        //     }
-        // }
 
+    // Key EventListener
+    document.querySelector(".form-link").addEventListener("click", ()=>{
+
+        // Username
+        username = document.querySelector("#username").value;
+        document.querySelector("#username-text").innerHTML = username;
+
+        // Change Theme
+        document.querySelector(".main-container").style.display = "none";
+        document.querySelector(".container").style.display = "block";
+
+        document.addEventListener('keydown', keyListener);
     });
+}
 
-    
-    
+// Game start
+game();
 
-})
+
+// Refresh game
+document.querySelector(".refresh-game").addEventListener("click", ()=>{
+    mistakes = 0;
+    check = "";
+    document.querySelector(".hangman-answer").innerHTML = "";
+    game();
+    document.addEventListener('keydown', keyListener);
+});
+
+
+
+
+
 
 
 // Fix autoplay
@@ -135,4 +151,4 @@ document.querySelector(".sounds").addEventListener("click", ()=>{
         document.querySelector(".sounds").innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
         document.querySelector(".hangman-music").muted = true;
     }
-})
+});
