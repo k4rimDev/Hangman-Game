@@ -60,7 +60,7 @@
     box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 }
 
-.form-text, #username, .form-link{
+.form-text, #username, .form-link, .refresh-game{
     font-family: sans-serif;
     font-size: 30px;
     line-height: 120%;
@@ -87,8 +87,10 @@
     color: #e4d0d0;
 }
 
-.form-link{
+.form-link, .refresh-game{
     text-decoration: none;
+    user-select: none;
+    text-align: center;
     color: #e4d0d0;
     border: 2px solid #1A1A1A;
     border-radius: 15px;
@@ -97,7 +99,7 @@
     transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
 }
 
-.form-link:hover {
+.form-link:hover, .refresh-game:hover {
     color: #fff;
     background-color: #1A1A1A;
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
@@ -127,7 +129,7 @@
 
 .container{
     display: none;
-    margin-top: 100px;
+    margin-top: 180px;
 }
 
 .hangman-music{
@@ -172,6 +174,11 @@
     color: azure;
     text-align: center;
 }
+
+.hangman-answer{
+    margin-bottom: 20px;
+}
+
 #hangman-mistakes{
     margin-bottom: 20px;
 }
