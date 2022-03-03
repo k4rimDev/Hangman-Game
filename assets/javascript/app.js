@@ -2,9 +2,9 @@
 
 let username;
 let objQuestion;
-let mistakes = 1;
+let mistakes;
 let key;
-let check = "";
+let check;
 let arrQuestions = [
     {
         "Ölkə": "usa"
@@ -51,12 +51,17 @@ function getObject(){
 }
 
 
-// Game 
+// Game
 function game(){
     getObject();
+    mistakes = 1;
+    check = "";
+    document.querySelector(".hangman-answer").innerHTML = "";
     let question = Object.keys(objQuestion);
     document.getElementById("hangman-question").innerHTML = question;
     let answer = Object.values(objQuestion);
+    console.log(objQuestion)
+
 
     for (let i = 0; i < answer[0].length; i ++){
         document.querySelector(".hangman-answer").innerHTML += `<span id="answer-text${[i]}"> _</span>`
@@ -99,6 +104,8 @@ function game(){
                 document.removeEventListener('keydown', keyListener);
             }
         }
+    console.log(objQuestion)
+
     }
 
 
@@ -117,18 +124,83 @@ function game(){
     });
 }
 
+
+
+
+
+
+
+function second(){
+    getObject();
+    
+    document.querySelector(".blood-effect").style.opacity = "0";
+    document.querySelector(".blood-effect").style.visibility = "hidden";
+
+    mistakes = 0;
+    check = "";
+    document.querySelector(".hangman-answer").innerHTML = "";
+    let question = Object.keys(objQuestion);
+    document.getElementById("hangman-question").innerHTML = question;
+    let answer = Object.values(objQuestion);
+    console.log(mistakes)
+
+
+    for (let i = 0; i < answer[0].length; i ++){
+        document.querySelector(".hangman-answer").innerHTML += `<span id="answer-text${[i]}"> _</span>`
+    }
+
+
+    // Function of game
+    function keyListener2(event){
+        key = event.key;
+    
+        if (answer[0].includes(key)){
+            for (let index = 0; index < answer[0].length; index++) {
+                if (answer[0][index] === key) {
+                    document.querySelector(`#answer-text${index}`).innerHTML = ` ${key}`;
+                    check += key;
+                    console.log(check)
+                }
+            }
+            if(check.length == answer[0].length){
+                setTimeout(() => {
+                    alert("You win");
+                    document.removeEventListener('keydown', keyListener2);
+                }, 1200)
+            }            
+        }
+    
+        // Mistakes
+        else{
+            if (mistakes < 7){
+                document.getElementById("hangman-mistakes__text").innerText = mistakes;
+                mistakes ++;
+            }
+            if (mistakes == 7){
+                document.querySelector(".blood-effect").style.opacity = "1";
+                document.querySelector(".blood-effect").style.visibility = "visible";
+                setTimeout(() => {
+                    alert("You lose, answer is " + answer[0]);
+                }, 1200)
+                
+                document.removeEventListener('keydown', keyListener2);
+            }
+        }
+    console.log(objQuestion)
+
+    }
+
+    document.addEventListener('keydown', keyListener2);
+
+
+}
+
 // Game start
 game();
 
 
 // Refresh game
-document.querySelector(".refresh-game").addEventListener("click", ()=>{
-    mistakes = 0;
-    check = "";
-    document.querySelector(".hangman-answer").innerHTML = "";
-    game();
-    document.addEventListener('keydown', keyListener);
-});
+document.querySelector(".refresh-game").addEventListener("click", second);
 
 
 
